@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">jetpack-compose</string>
+    <string name="happy_birthday">Happy birthday Leno!</string>
+    <string name="from_message">from - Vinicius"</string>
 </resources>
