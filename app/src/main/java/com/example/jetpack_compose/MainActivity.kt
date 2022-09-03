@@ -13,6 +13,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -26,40 +27,50 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackcomposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    MountLayout()
+                Surface(color = MaterialTheme.colors.background) {
+                    ComposeArticle()
                 }
             }
         }
     }
 }
+@Composable
+fun ComposeArticle() {
+    ArticleCard(
+        title = stringResource(id = R.string.title),
+        shortDescription = stringResource(id = R.string.shortDescription),
+        longDescription = stringResource(id = R.string.longDescription) ,
+        imagePainter = painterResource(id = R.drawable.bg_compose_background)
+    )
+}
 
 @Composable
-fun MountLayout() {
-    val image = painterResource(id = R.drawable.bg_compose_background)
-    Column {
+private fun ArticleCard(
+    title: String,
+    shortDescription: String,
+    longDescription: String,
+    imagePainter: Painter,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
         Image(
-            painter = image,
+            painter = imagePainter,
             contentDescription = null,
-            modifier = Modifier.fillMaxWidth()
+            modifier = modifier.fillMaxWidth()
         )
         Text(
-            text = stringResource(id = R.string.title),
+            text = title,
             fontSize = 24.sp,
             modifier = Modifier.padding(16.dp)
         )
         Text(
-            text = stringResource(id = R.string.paragraph_one),
+            text = shortDescription,
             modifier = Modifier.padding(16.dp),
             textAlign = TextAlign.Justify
 
         )
         Text(
-            text = stringResource(id = R.string.paragraph_two),
+            text = longDescription,
             modifier = Modifier.padding(16.dp),
             textAlign = TextAlign.Justify
         )
@@ -70,6 +81,6 @@ fun MountLayout() {
 @Composable
 fun DefaultPreview() {
     JetpackcomposeTheme {
-        MountLayout()
+        ComposeArticle()
     }
 }
