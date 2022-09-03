@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">jetpack-compose</string>
+    <string name="statusMessage">All tasks completed</string>
+    <string name="customMessage">Nice work!</string>
 </resources>
